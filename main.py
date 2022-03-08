@@ -1,4 +1,5 @@
 from flask import Flask, request
+import mysql.connector
 
 app = Flask(__name__)
 
@@ -14,8 +15,22 @@ def hegertest():
         print(f"Clone URL: {ssh_url}\n")
         print(f"Ref: {ref}\n")
         return {"message": "success"}
+
+        db = mysql.connector.connect(
+            host="localhost",
+            user="foo",
+            password="bar"
+        )
+
+        cursor = db.cursor()
+        # Added to test if code analysis tools find the injections vuln
+        cursor.execute(f'INSERT INTO footable (name) VALUES ("{repo_name}"")')
+        db.commit()
     else:
         return {"message": "hello world"}
+
+if __name__ == "__main__":
+
 # from fastapi import FastAPI
 
 # app = FastAPI()
