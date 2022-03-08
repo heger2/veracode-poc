@@ -29,8 +29,6 @@ def hegertest():
     else:
         return {"message": "hello world"}
 
-if __name__ == "__main__":
-
 # from fastapi import FastAPI
 
 # app = FastAPI()
