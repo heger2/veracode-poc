@@ -25,6 +25,7 @@ def hegertest():
         cursor = db.cursor()
         # Added to test if code analysis tools find the injections vuln
         cursor.execute(f'INSERT INTO footable (name) VALUES ("{repo_name}"")')
+        cursor.execute('INSERT INTO footable (name) VALUES ("' + repo_name +'")')
         db.commit()
     else:
         return {"message": "hello world"}
